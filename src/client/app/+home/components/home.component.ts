@@ -13,10 +13,12 @@ import { NavRequest } from './navRequest'
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class HomeComponent implements OnInit {
+  //declare local variables
   newName: string;
   nav: NavRequest;
   tempDate: string;
   tempTime: string;
+
   constructor(
     private _router: Router,
     public nameListService: NameListService,
@@ -33,11 +35,18 @@ export class HomeComponent implements OnInit {
     this.nav = new NavRequest;
     this.nav.dirctn = 'dprt';
 
+    //set a default value for the time
+    this.tempDate = this._timeService.getMinDate();
+
     //set a default value for the date
     this.tempTime = this._timeService.getMinTime();
 
-    //set a default value for the time
-    this.tempDate = this._timeService.getMinDate();
+    //run these by default
+    this.setDate(this.tempDate);
+    this.setTime(this.tempTime);
+
+    //load the list train lines
+    //this.loadTrainNames();
   }
 
   /* TODO: UPDATE THIS EXPLAINATION
@@ -69,8 +78,10 @@ export class HomeComponent implements OnInit {
    * @returns return false to prevent default form submit behavior to refresh the page.
    */
    submitBookends(bookends: NavRequest) {
-    console.log('got this..');
+    //log the passed value
     console.log(bookends);
+
+    //prepare the link
     let link = ['Navigation', 
       { start: bookends.start, 
         end: bookends.end,
@@ -78,6 +89,23 @@ export class HomeComponent implements OnInit {
         wkday: bookends.wkday, 
         time: bookends.time }];
 
+    //execute the link
+    this._router.navigate(link);
+   }
+
+   submitTrain(short: number, long: string) {
+    //
+    var urlSafeName = long.replace(' ', "_");
+    
+    //prepare the link
+    let link = ['Schedules', 
+      { short: short, 
+        long: urlSafeName,
+        dirctn: 0, 
+        wkday: this._timeService.getWkDay(this.tempDate), 
+        time: this._timeService.getUrlSafeTime(this.tempTime) }];
+
+    //execute the link
     this._router.navigate(link);
    }
 
