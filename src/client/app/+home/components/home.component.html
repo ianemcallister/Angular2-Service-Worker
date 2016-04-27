@@ -12,7 +12,7 @@
 			id="departureInput"
 			name="departureInput" 
 			placeholder="departure station, e.g. PDX..."
-			ng-model="landing.seachBy.name">
+			[(ngModel)]="nav.start">
 	
 	<!--Enter the arrival Station-->
 	<label for="arrivalInput">Going To:</label>
@@ -21,23 +21,48 @@
 			id="arrivalInput" 
 			name="arrivalInput"
 			placeholder="departure station, e.g. Rose Garden..."
-			ng-model="landing.seachBy.cuisine">
+			[(ngModel)]="nav.end">
 
-	<!--Enter the arrival Station-->
-	<label for="timeInput">Time:</label>
-	<input 	type="datetime-local" 
-			class="form-control" 
-			id="timeInput" 
-			name="timeInput"
-			ng-model="landing.seachBy.cuisine">
+	<!--Optional Values-->
+	<div class="row">
+		<h4>Optional:</h4>
+		<div class="row">
+			<label for="directionInput"></label>
+			<input 	type="radio"
+					name="directionInput"
+					class='radioBtn'
+					value="arrv">Arrives at
+			<input 	type="radio"
+					name="directionInput"
+					class='radioBtn'
+					value="arrv"
+					checked>Departs at <br>
 
+			<label for="timeInput">Time:</label>
+			<input 	type="datetime-local" 
+					class="form-control" 
+					id="timeInput" 
+					name="timeInput"
+					[(ngModel)]="nav.time">
+		</div>
+	</div>
+	
+	
 	<!--Submission button-->
 	<label for="submit"></label>
+	<!--<button (click)="submitBookends()">Submit</button>-->
 	<input 	class="btn btn-success btn-block" 
 			type="submit" 
-			id="submit" 
+			id="submit"
+			name="submit" 
 			value="Submit"
-			ng-click="">
+			(click)="submitBookends({
+				start: 123,
+				end: 456,
+				dirctn: 'arrv',
+				wkday: 3,
+				time: 129372
+			})">
 </div>
 </div>
 

@@ -21,7 +21,7 @@ import {SchedulesComponent} from '../+schedules/index';
     component: HomeComponent
   },
   {
-    path: '/nav/:start/:end/:wkday/:time',
+    path: '/nav/:start/:end/:dirctn/:wkday/:time',
     name: 'Navigation',
     component: NavigationComponent
   },
