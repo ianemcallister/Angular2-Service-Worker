@@ -31,22 +31,31 @@
 			<input 	type="radio"
 					name="directionInput"
 					class='radioBtn'
-					value="arrv">Arrives at
+					(change)='setDirection("arrv")'
+					>Arrives at
 			<input 	type="radio"
 					name="directionInput"
 					class='radioBtn'
-					value="arrv"
+					(change)='setDirection("dprt")'
 					checked>Departs at <br>
-
+			
 			<label for="timeInput">Time:</label>
-			<input 	type="datetime-local" 
+			<input 	type="date"
+					class="form-control"
+					min="{{tempDate}}" 
+					value="{{tempDate}}"
+					[(ngModel)]="tempDate"
+					(blur)="setDate(tempDate)">
+			<input 	type="time" 
 					class="form-control" 
 					id="timeInput" 
 					name="timeInput"
-					[(ngModel)]="nav.time">
+					value="{{tempTime}}"
+					step="60"
+					[(ngModel)]="tempTime"
+					(blur)="setTime(tempTime)">
 		</div>
 	</div>
-	
 	
 	<!--Submission button-->
 	<label for="submit"></label>
@@ -57,11 +66,11 @@
 			name="submit" 
 			value="Submit"
 			(click)="submitBookends({
-				start: 123,
-				end: 456,
-				dirctn: 'arrv',
-				wkday: 3,
-				time: 129372
+				start: nav.start,
+				end: nav.end,
+				dirctn: nav.dirctn,
+				wkday: nav.wkday,
+				time: nav.time
 			})">
 </div>
 </div>

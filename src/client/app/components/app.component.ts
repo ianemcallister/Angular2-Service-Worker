@@ -2,7 +2,8 @@ import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 import {NavbarComponent} from './navbar.component';
 import {ToolbarComponent} from './toolbar.component';
-import {NameListService} from '../shared/index';
+import {NameListService} from '../shared/name-list';
+import {TimeService} from '../shared/time';
 import {HomeComponent} from '../+home/index';
 import {AboutComponent} from '../+about/index';
 import {NavigationComponent} from '../+navigation/index';
@@ -10,7 +11,7 @@ import {SchedulesComponent} from '../+schedules/index';
 
 @Component({
   selector: 'sd-app',
-  viewProviders: [NameListService],
+  viewProviders: [NameListService, TimeService],
   templateUrl: 'app/components/app.component.html',
   directives: [ROUTER_DIRECTIVES, NavbarComponent, ToolbarComponent]
 })

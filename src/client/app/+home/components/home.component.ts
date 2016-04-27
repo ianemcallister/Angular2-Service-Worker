@@ -2,7 +2,8 @@ import {Component, OnInit} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
-import {NameListService} from '../../shared/index';
+import {TimeService} from '../../shared/time';
+import {NameListService} from '../../shared/name-list';
 import { NavRequest } from './navRequest'
 
 @Component({
@@ -13,10 +14,13 @@ import { NavRequest } from './navRequest'
 })
 export class HomeComponent implements OnInit {
   newName: string;
-  nav = {start: 0, end: 0, dirctn: 'dpt', wkday: 3, time: 1203};
+  nav: NavRequest;
+  tempDate: string;
+  tempTime: string;
   constructor(
     private _router: Router,
-    public nameListService: NameListService) {
+    public nameListService: NameListService,
+    public _timeService: TimeService) {
 
   }
   
@@ -25,35 +29,56 @@ export class HomeComponent implements OnInit {
    * @returns N/A
    */
   ngOnInit() {
-    console.log('testing');
-    console.log(this.nav);
+    //TODO: UPDATE THIS LATER    
+    this.nav = new NavRequest;
+    this.nav.dirctn = 'dprt';
+
+    //set a default value for the date
+    this.tempTime = this._timeService.getMinTime();
+
+    //set a default value for the time
+    this.tempDate = this._timeService.getMinDate();
+  }
+
+  /* TODO: UPDATE THIS EXPLAINATION
+   * @param newname  any text as input.
+   * @returns return false to prevent default form submit behavior to refresh the page.
+   */
+  setDirection(direction: string) {
+    this.nav.dirctn = direction;
+  }
+
+  /* TODO: UPDATE THIS EXPLAINATION
+   * @param newname  any text as input.
+   * @returns return false to prevent default form submit behavior to refresh the page.
+   */
+  setDate(date: string) {
+    this.nav.wkday = this._timeService.getWkDay(date);
+  }
+
+  /* TODO: UPDATE THIS EXPLAINATION
+   * @param newname  any text as input.
+   * @returns return false to prevent default form submit behavior to refresh the page.
+   */
+  setTime(time: string) {
+    this.nav.time = this._timeService.getUrlSafeTime(time);
   }
 
   /* Passes the navigation paramaters to the route calculate and changes the page
    * @param newname  any text as input.
    * @returns return false to prevent default form submit behavior to refresh the page.
    */
-   submitBookends(/*bookends: NavRequest*/) {
+   submitBookends(bookends: NavRequest) {
     console.log('got this..');
-    //console.log(bookends);
+    console.log(bookends);
     let link = ['Navigation', 
-      { start: 1039, 
-        end: 3821,
-        dirctn: 'dprt', 
-        wkday: 3, 
-        time: 1402399821 }];
+      { start: bookends.start, 
+        end: bookends.end,
+        dirctn: bookends.dirctn, 
+        wkday: bookends.wkday, 
+        time: bookends.time }];
 
     this._router.navigate(link);
    }
-
-  /*
-   * @param newname  any text as input.
-   * @returns return false to prevent default form submit behavior to refresh the page.
-   */
-  /*addName(): boolean {
-    this.nameListService.add(this.newName);
-    this.newName = '';
-    return false;
-  }*/
 
 }
