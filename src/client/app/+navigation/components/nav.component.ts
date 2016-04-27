@@ -4,12 +4,12 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {NameListService} from '../../shared/index';
 
 @Component({
-  selector: 'sd-home',
-  templateUrl: 'app/+home/components/home.component.html',
-  styleUrls: ['app/+home/components/home.component.css'],
+  selector: 'sd-nav',
+  templateUrl: 'app/+navigation/components/nav.component.html',
+  styleUrls: ['app/+navigation/components/nav.component.css'],
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class HomeComponent {
+export class NavigationComponent {
   newName: string;
   constructor(public nameListService: NameListService) {}
   

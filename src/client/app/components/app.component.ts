@@ -5,6 +5,8 @@ import {ToolbarComponent} from './toolbar.component';
 import {NameListService} from '../shared/index';
 import {HomeComponent} from '../+home/index';
 import {AboutComponent} from '../+about/index';
+import {NavigationComponent} from '../+navigation/index';
+import {SchedulesComponent} from '../+schedules/index';
 
 @Component({
   selector: 'sd-app',
@@ -17,6 +19,16 @@ import {AboutComponent} from '../+about/index';
     path: '/',
     name: 'Home',
     component: HomeComponent
+  },
+  {
+    path: '/nav/:start/:end/:wkday/:time',
+    name: 'Navigation',
+    component: NavigationComponent
+  },
+  {
+    path: '/sched/:short/:long/:wkday/:dirctn/:time',
+    name: 'Schedules',
+    component: SchedulesComponent
   },
   {
     path: '/about',

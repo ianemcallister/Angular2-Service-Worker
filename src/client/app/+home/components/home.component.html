@@ -1,14 +1,52 @@
-<p>
-  Howdy! Here's a list of awesome computer scientists.
-  Do you know any others? Add to the list yourself.
-</p>
-
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
+<h1>Where Are you Going Today?</h1>
 
 
+<div class="col-xs-12 col-sm-12 col-md-12">
+<h3>Plan a Route</h3>
+<div class="form-group">
+	<!--Enter the departure Station-->
+	
+	<label for="departureInput">Leaving From:</label>
+	<input 	type="text" 
+			class="form-control" 
+			id="departureInput"
+			name="departureInput" 
+			placeholder="departure station, e.g. PDX..."
+			ng-model="landing.seachBy.name">
+	
+	<!--Enter the arrival Station-->
+	<label for="arrivalInput">Going To:</label>
+	<input 	type="text" 
+			class="form-control" 
+			id="arrivalInput" 
+			name="arrivalInput"
+			placeholder="departure station, e.g. Rose Garden..."
+			ng-model="landing.seachBy.cuisine">
+
+	<!--Enter the arrival Station-->
+	<label for="timeInput">Time:</label>
+	<input 	type="datetime-local" 
+			class="form-control" 
+			id="timeInput" 
+			name="timeInput"
+			ng-model="landing.seachBy.cuisine">
+
+	<!--Submission button-->
+	<label for="submit"></label>
+	<input 	class="btn btn-success btn-block" 
+			type="submit" 
+			id="submit" 
+			value="Submit"
+			ng-click="">
+</div>
+</div>
+
+<h3>Choose a Train Line</h3>
 <ul>
-  <li *ngFor="#name of nameListService.get()">{{name}}</li>
+  <!--<li *ngFor="#name of nameListService.get()">{{name}}</li>-->
+  <li>Red Line</li>
+  <li>Blue Line</li>
+  <li>Yellow Line</li>
+  <li>Orange Line</li>
+  <li>Green Line</li>
 </ul>
