@@ -48,7 +48,7 @@ export class NameListService {
     var longName = '';
 
     //loop through values
-    this.names.forEach(function(line) { if (line.short == short) longName = line.long; });
+    this.names.forEach(function(line) { if (Number(line.short) == short) longName = line.long; });
     
     //return findings
     return longName;

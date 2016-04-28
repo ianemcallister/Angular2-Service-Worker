@@ -1,12 +1,8 @@
-<div>Train Schedule Filter Directive Goes here
-	<ul>
-		<li>Change Line</li>
-		<li>Change Direction</li>
-		<li>Change Time</li>
-		<li>Change arrv or dprt</li>
-	</ul>
-</div>
+<sd-schedulesfilter [currentLine]='train.short'
+					[currentTime]='train.time'
+					[currentDirection]='train.dirctn'>
+</sd-schedulesfilter>
 
 <div>
-	<h1>{{longName}}</h1>
+	<h1>{{train.long}}</h1>
 </div>
