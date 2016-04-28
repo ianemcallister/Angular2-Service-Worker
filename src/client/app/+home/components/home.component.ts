@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   nav: NavRequest;
   tempDate: string;
   tempTime: string;
+  navOptions: boolean;
 
   constructor(
     private _router: Router,
@@ -45,8 +46,8 @@ export class HomeComponent implements OnInit {
     this.setDate(this.tempDate);
     this.setTime(this.tempTime);
 
-    //load the list train lines
-    //this.loadTrainNames();
+    //initialize value
+    this.navOptions = false;
   }
 
   /* TODO: UPDATE THIS EXPLAINATION
@@ -96,7 +97,7 @@ export class HomeComponent implements OnInit {
    submitTrain(short: number, long: string) {
     //
     var urlSafeName = long.replace(' ', "_");
-    
+
     //prepare the link
     let link = ['Schedules', 
       { short: short, 

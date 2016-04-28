@@ -1,31 +1,40 @@
-<h1>Where Are you Going Today?</h1>
+<h2>Where Are you Going Today?</h2>
 
 
 <div class="col-xs-12 col-sm-12 col-md-12">
-<h3>Plan a Route</h3>
+<h2>Plan a Route</h2>
 <div class="form-group">
 	<!--Enter the departure Station-->
-	
 	<label for="departureInput">Leaving From:</label>
-	<input 	type="text" 
+	<input 	list='stations'
 			class="form-control" 
 			id="departureInput"
 			name="departureInput" 
 			placeholder="departure station, e.g. PDX..."
 			[(ngModel)]="nav.start">
-	
+	<datalist id='stations' name='stations'>
+		<option *ngFor="#station of nameListService.getStations()"
+				value="{{station.id}}">{{station.name}}
+		</option>
+	</datalist>
+
 	<!--Enter the arrival Station-->
 	<label for="arrivalInput">Going To:</label>
-	<input 	type="text" 
+	<input 	list='stations'
 			class="form-control" 
 			id="arrivalInput" 
 			name="arrivalInput"
 			placeholder="departure station, e.g. Rose Garden..."
 			[(ngModel)]="nav.end">
+	<datalist id='stations' name='stations'>
+		<option *ngFor="#station of nameListService.getStations()"
+				value="{{station.id}}">{{station.name}}
+		</option>
+	</datalist>
 
 	<!--Optional Values-->
-	<div class="row">
-		<h4>Optional:</h4>
+	<h4 (click)='navOptions=!navOptions'>Date & Time (Optional):</h4>
+	<div *ngIf="navOptions" class="row">
 		<div class="row">
 			<label for="directionInput"></label>
 			<input 	type="radio"
@@ -56,10 +65,8 @@
 					(blur)="setTime(tempTime)">
 		</div>
 	</div>
-	
 	<!--Submission button-->
 	<label for="submit"></label>
-	<!--<button (click)="submitBookends()">Submit</button>-->
 	<input 	class="btn btn-success btn-block" 
 			type="submit" 
 			id="submit"
@@ -72,12 +79,14 @@
 				wkday: nav.wkday,
 				time: nav.time
 			})">
+	
+	
 </div>
 </div>
 
-<h3>Choose a Train Line</h3>
+<h2>Choose a Train Line</h2>
 <ul>
-  <li 	*ngFor="#name of nameListService.get()"
+  <li 	*ngFor="#name of nameListService.getTrains()"
   		(click)="submitTrain(name.short, name.long)">{{name.long}}</li>
 </ul>
 
