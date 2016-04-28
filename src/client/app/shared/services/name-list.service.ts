@@ -42,6 +42,17 @@ export class NameListService {
   getStations(): {name: string, id: string}[] {
     return this.stations;
   }
+
+  getATrain(short: number) {
+    //decalare local variable
+    var longName = '';
+
+    //loop through values
+    this.names.forEach(function(line) { if (line.short == short) longName = line.long; });
+    
+    //return findings
+    return longName;
+  }
   
   /*add(value: string): void {
     this.names.push(value);

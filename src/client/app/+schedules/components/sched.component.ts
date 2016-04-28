@@ -1,5 +1,6 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import { RouteParams } from 'angular2/router';
 
 import {NameListService} from '../../shared/name-list';
 
@@ -9,9 +10,23 @@ import {NameListService} from '../../shared/name-list';
   styleUrls: ['app/+schedules/components/sched.component.css'],
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class SchedulesComponent {
-  newName: string;
+export class SchedulesComponent implements OnInit {
+  shortName: number;
+  longName: string;
+
+  constructor(
+  	private _routeParams:RouteParams,
+  	public nameListService: NameListService) {
+
+  	//retrieve the shortName
+  	this.shortName = +this._routeParams.get('short');
+
+  }
   
-  constructor(public nameListService: NameListService) {}
-  
+  ngOnInit() {
+  	
+  	//update the view with the longName
+  	this.longName = this.nameListService.getATrain(this.shortName);
+
+  }
 }
