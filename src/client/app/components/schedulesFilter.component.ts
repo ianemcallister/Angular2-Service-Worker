@@ -15,10 +15,13 @@ export class SchedulesFilterComponent implements OnInit {
 	//linesbyName: any;
 	lineName: string;
 	wkDays: any;
+	visable: boolean;
 
 	constructor(
 		private _nameListService: NameListService) {
 
+		this.visable = false;
+		
 		this.wkDays = [
 			"Monday",
 			"Tuesday",

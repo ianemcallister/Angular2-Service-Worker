@@ -1,5 +1,7 @@
 <div class="form-group schedulesFilter"> 
 	
+	<strong (click)='visable=!visable'>Filters</strong>
+	<div *ngIf="visable" >
 	<!--Train Line-->
 	<input 	list='trains'
 			class='form-control'
@@ -42,5 +44,5 @@
 			name='direction'
 			value='outbound'
 			>Outbound
-
+	</div>
 </div>

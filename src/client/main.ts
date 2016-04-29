@@ -3,20 +3,32 @@ import {bootstrap} from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, APP_BASE_HREF} from 'angular2/router';
 import {AppComponent} from './app/components/app.component';
 
-if ('<%= ENV %>' === 'prod') { enableProdMode(); }
+function openDatabase() {
+	console.log('opening the databse');
+}
 
-bootstrap(AppComponent, [
-  ROUTER_PROVIDERS,
-  provide(APP_BASE_HREF, { useValue: '<%= APP_BASE %>' })
-]);
+//define the production mode if need be
+function _enableProdMode() {
+	if ('<%= ENV %>' === 'prod') { enableProdMode(); }
 
-// In order to start the Service Worker located at "./worker.js"
-// uncomment this line. More about Service Workers here
-// https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
-//
-if ('serviceWorker' in navigator) {
-   (<any>navigator).serviceWorker.register('./worker.js').then((registration: any) =>
-       console.log('ServiceWorker registration successful with scope: ', registration.scope))
-     .catch((err: any) =>
-       console.log('ServiceWorker registration failed: ', err));
+	bootstrap(AppComponent, [
+	  ROUTER_PROVIDERS,
+	  provide(APP_BASE_HREF, { useValue: '<%= APP_BASE %>' })
+	]);
+}
+
+//define the service worker
+function _registerServiceWorker() {
+	if ('serviceWorker' in navigator) {
+	   (<any>navigator).serviceWorker.register('./worker.js').then((registration: any) =>
+	       console.log('ServiceWorker registration successful with scope: ', registration.scope))
+	     .catch((err: any) =>
+	       console.log('ServiceWorker registration failed: ', err));
 	}
+}
+
+//run methods
+_enableProdMode();
+_registerServiceWorker();
+openDatabase();
+

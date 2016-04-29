@@ -35,5 +35,10 @@ export class SchedulesComponent implements OnInit {
   	this.train.long = this.nameListService.getATrain(this.train.short);
 
   	console.log(this.train);
+
+  	this.nameListService.getSystemMap()
+  	.then(function(response) {
+  		console.log(response);
+  	});
   }
 }

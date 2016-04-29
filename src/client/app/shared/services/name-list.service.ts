@@ -1,3 +1,7 @@
+import { SYSTEMMAP } from '../mock-systemMap';
+import { Injectable } from 'angular2/core';
+
+@Injectable()
 export class NameListService {
 
   names = [
@@ -35,6 +39,11 @@ export class NameListService {
     {id:"landmark-145",name:"Mt Hood Ave MAX Station",desc:"Northbound stop in Portland (Stop ID 10576)"},
     {id:"10579",name:"Portland Int'l Airport MAX Station",desc:"Bidirectional stop in Portland (Stop ID 10579)"}
   ];
+
+  getSystemMap() {
+    //TODO: Update this to fetch later
+    return Promise.resolve(SYSTEMMAP);
+  }
 
   getTrains(): {long: string, short: string}[] {
     return this.names;
@@ -81,7 +90,8 @@ export class NameListService {
     return longName;
   }
   
-  /*add(value: string): void {
+  /*getALineSchedule
+  add(value: string): void {
     this.names.push(value);
   }*/
 }

@@ -5,6 +5,18 @@
 </sd-schedulesfilter>
 
 <div>
-	<h1>{{train.long}}</h1>
-	{{train.short}}
+	<h1>{{train.long}} ({{train.short}})</h1>
+	
+	<table>
+		<thead>
+			<th>STATION</th>
+			<th>DEPARTS</th>
+		</thead>
+		<tbody>
+			<tr *ngFor='#stop of nameListService.getStations()'>
+				<td>{{stop.name}}</td>
+				<td>3:00pm</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
