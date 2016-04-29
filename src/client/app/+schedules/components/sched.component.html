@@ -1,8 +1,10 @@
-<sd-schedulesfilter [currentLine]='train.short'
-					[currentTime]='train.time'
-					[currentDirection]='train.dirctn'>
+<sd-schedulesfilter [(currentLine)]='train.short'
+					[(currentTime)]='train.time'
+					[(currentDirection)]='train.dirctn'
+					>
 </sd-schedulesfilter>
 
 <div>
 	<h1>{{train.long}}</h1>
+	{{train.short}}
 </div>

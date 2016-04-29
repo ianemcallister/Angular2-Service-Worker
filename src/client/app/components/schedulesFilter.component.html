@@ -1,10 +1,46 @@
-<div>This is the train schedules filter 
+<div class="form-group schedulesFilter"> 
 	
-	
+	<!--Train Line-->
+	<input 	list='trains'
+			class='form-control'
+			id='trainsInput'
+			name='trainsInput'
+			[(ngModel)]='lineName'
+			>
+	<datalist id='trains' name='trains'>
+		<option *ngFor='#train of _nameListService.getTrains()'
+				value={{train.long}}></option>
+	</datalist>		
 
-	<ul>
-		<li>Change Line {{currentLine}}</li>
-		<li>Change Time {{currentTime}}</li>
-		<li>Change Direction {{currentDirection}}</li>
-	</ul>
+	<!--Departure Day-->
+	<input 	list='wkDays'
+			class='form-control'
+			id='wkDaysInput'
+			name='wkDaysInput'
+			value="Monday"
+			>
+	<datalist id='wkDays' name='wkDays'>
+		<option *ngFor='#day of wkDays'
+				value={{day}}></option>
+	</datalist>	
+
+	<!--Departure Time-->
+	<input 	type="time" 
+					class="form-control" 
+					id="timeInput" 
+					name="timeInput"
+					value="{{tempTime}}"
+					step="60"
+					> 
+
+	<!--Direction-->
+	<input 	type='radio'
+			name='direction'
+			value='inbound'
+			checked>Inbound
+	<input 	type='radio'
+			name='direction'
+			value='outbound'
+			>Outbound
+
 </div>

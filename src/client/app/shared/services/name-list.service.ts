@@ -1,4 +1,5 @@
 export class NameListService {
+
   names = [
     {long:'Red Line', short:'90'},
     {long:'Blue Line', short:'100'},
@@ -39,11 +40,37 @@ export class NameListService {
     return this.names;
   }
 
+  getTrainsByKey(): any {
+    var allTrains = this.getTrains();
+    var exportableObject: any = {};
+
+    allTrains.forEach(function(line) {
+      var short = Number(line.short);
+      exportableObject[short] = line.long;
+    });
+
+    return exportableObject;
+  }
+
+  getTrainsByName(): any {
+    var allTrains = this.getTrains();
+    var exportableObject: any = {};
+
+    allTrains.forEach(function(line) {
+      var long = line.long;
+      console.log(long);
+      exportableObject[line.long] = Number(line.short);
+    });
+
+    return exportableObject; 
+  }
+
   getStations(): {name: string, id: string}[] {
     return this.stations;
   }
 
   getATrain(short: number) {
+    console.log(short);
     //decalare local variable
     var longName = '';
 
