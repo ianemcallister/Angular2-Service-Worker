@@ -11,6 +11,7 @@ export class ProjectConfig extends SeedConfig {
     let additional_deps: InjectableDependency[] = [
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
+      //{src: 'idb/lib/lidb.js', inject: 'idb'}
     ];
 
     const seedDependencies = this.NPM_DEPENDENCIES;
