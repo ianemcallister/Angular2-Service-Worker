@@ -11,6 +11,16 @@ import {NameListService} from '../../shared/name-list';
 })
 export class NavigationComponent {
   newName: string;
-  constructor(public nameListService: NameListService) {}
+  constructor(public nameListService: NameListService) {
+  	
+  	/*fetch('../../server/JSON/systemMap.json')
+  	.then(function(results) {
+  		console.log(results);
+  	})
+  	.catch(function(error) {
+  		console.log('Error:', error);
+  	});*/
+
+  }
   
 }
